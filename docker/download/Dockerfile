@@ -1,15 +1,10 @@
 FROM ubuntu:latest
 
+COPY download.sh .
+
 RUN apt-get update -y
-RUN apt-get install -y python2
+RUN apt-get install -y wget
+RUN apt-get install -y unzip
 
-COPY get-pip.py .
-RUN python2 get-pip.py
-RUN pip install torch==0.4 --no-cache-dir
-RUN pip install future
-RUN pip install torchnet
-RUN pip install h5py
-RUN pip install torchvision
-
-
-
+RUN chmod +x download.sh
+ENTRYPOINT ./download.sh
