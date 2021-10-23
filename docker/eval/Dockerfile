@@ -18,5 +18,7 @@ RUN pip install torchvision==0.2.2
 RUN pip install torchnet
 RUN pip install h5py
 
+ENTRYPOINT python2 test.py
+
 
 
