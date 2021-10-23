@@ -14,5 +14,5 @@ RUN pip install scikit-image
 #RUN pip install setuptools
 #RUN pip install opencv-python
 
-
+ENTRYPOINT python2 prepare_2d_data.py
 

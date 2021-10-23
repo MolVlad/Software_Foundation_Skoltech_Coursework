@@ -4,6 +4,15 @@ This is just for development purposes
 docker build . --file=docker/download/Dockerfile -t download
 docker run -v $(pwd)/data:/data download
 
-2) Train:
+2) Prepare:
+docker build . --file=docker/prepare/Dockerfile -t prepare
+docker run prepare
 
+3) Train:
+docker build . --file=docker/train/Dockerfile -t train
+docker run train
+
+4) Eval:
+docker build . --file=docker/eval/Dockerfile -t eval
+docker run eval
 
