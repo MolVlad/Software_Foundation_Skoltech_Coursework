@@ -1,0 +1,9 @@
+This is just for development purposes
+
+1) Download:
+docker build . --file=docker/download/Dockerfile -t download
+docker run -v $(pwd)/data:/data download
+
+2) Train:
+
+
