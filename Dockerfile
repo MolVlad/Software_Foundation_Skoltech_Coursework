@@ -8,7 +8,7 @@ RUN pip install torch==0.4 --no-cache-dir
 RUN pip install future
 RUN pip install torchnet
 RUN pip install h5py
-RUN pip install torchvision
+RUN pip install torchvision==0.2.2
 
 
 
