@@ -6,13 +6,10 @@ RUN apt-get update -y && \
 	apt-get install -y python2 && \
 	python2 get-pip.py && \
 	pip install setuptools && \
-	pip install certifi && \
-	pip install future && \
-	pip install numpy && \
 	python2 setup.py install
 
 
-#ENTRYPOINT python2 test.py
+ENTRYPOINT python2 test.py
 
 
 
