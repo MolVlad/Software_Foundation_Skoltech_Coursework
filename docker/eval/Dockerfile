@@ -1,22 +1,15 @@
 FROM ubuntu:latest
 
-RUN apt-get update -y
-RUN apt-get install -y python2
+COPY docker/get-pip.py 3dmv/util.py 3dmv/data_util.py 3dmv/model.py 3dmv/enet.py 3dmv/projection.py 3dmv/test.py ./
 
-COPY docker/get-pip.py . 
-COPY 3dmv/util.py .
-COPY 3dmv/data_util.py .
-COPY 3dmv/model.py .
-COPY 3dmv/enet.py .
-COPY 3dmv/projection.py .
-COPY 3dmv/test.py .
-
-RUN python2 get-pip.py
-RUN pip install numpy
-RUN pip install torch==0.4 --no-cache-dir
-RUN pip install torchvision==0.2.2
-RUN pip install torchnet
-RUN pip install h5py
+RUN apt-get update -y && \
+	apt-get install -y python2 && \
+	python2 get-pip.py && \
+	pip install numpy && \
+	pip install torch==0.4 --no-cache-dir && \
+	pip install torchvision==0.2.2 && \
+	pip install torchnet && \
+	pip install h5py
 
 ENTRYPOINT python2 test.py
 
