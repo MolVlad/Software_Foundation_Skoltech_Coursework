@@ -1,0 +1,3 @@
+You can download initial data from ScanNet dataset (https://github.com/ScanNet/ScanNet).
+For that, you need to fill out an agreement to the ScanNet Terms of Use and send it to scannet@googlegroups.com.
+After downloading initial data, place it into data/scannetv2, run prepare image and obtain results at data/scannetv2_images.
