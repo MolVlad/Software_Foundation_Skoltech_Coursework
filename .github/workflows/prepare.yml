@@ -1,7 +1,7 @@
 on:
   push
 jobs:
-  idle:
+  building:
     name: Prepare
     runs-on: ubuntu-latest
     steps:
@@ -15,3 +15,10 @@ jobs:
         run: docker build . --file=docker/prepare/Dockerfile -t prepare
       -
         run: docker images
+      -
+        run: ls $(pwd)
+      -
+        name: Run docker container for prepare step
+        run: docker run -t -v $(pwd)/data:/data prepare
+      -
+        run: ls
