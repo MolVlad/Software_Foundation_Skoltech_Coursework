@@ -1,7 +1,7 @@
 on:
   push
 jobs:
-  idle:
+  building:
     name: Eval
     runs-on: ubuntu-latest
     steps:
@@ -15,3 +15,10 @@ jobs:
         run: docker build . --file=docker/eval/Dockerfile -t eval
       -
         run: docker images
+      -
+        run: ls $(pwd)
+      -
+        name: Run docker container for eval step
+        run: docker run -t -v $(pwd)/data:/data eval
+      -
+        run: ls
