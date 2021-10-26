@@ -1,5 +1,4 @@
 DATA_DIR = data
-LINTED_DIR = lint
 PREPARE_FLAGS="--scannet_path data/scannetv2 --output_path data/scannetv2_images --export_label_images"	
 TRAIN_FLAGS="--help"
 EVAL_FLAGS="--help"
@@ -17,8 +16,7 @@ hub_eval:
 	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --gpus all dmasny/fse_project:eval
 
 hub_lint:
-	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint dmasny/fse_project:lint
-
+	docker run -it -v $(shell pwd)/:/lint dmasny/fse_project:lint
 
 
 build_download:
@@ -51,7 +49,7 @@ run_eval:
 	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --gpus all --env EVAL_FLAGS=$(EVAL_FLAGS) eval
 
 run_lint:
-	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint lint
+	docker run -it -v $(shell pwd)/:/lint lint
 	
 
 
@@ -68,7 +66,7 @@ run_eval_debug:
 	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --gpus all --entrypoint=bash eval
 
 run_lint_debug:
-	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint --entrypoint=bash lint
+	docker run -it -v $(shell pwd)/:/lint --entrypoint=bash lint
 
 
 

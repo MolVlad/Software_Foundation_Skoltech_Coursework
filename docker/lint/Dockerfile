@@ -1,13 +1,13 @@
 FROM ubuntu:latest
 
-COPY docker/get-pip.py ./
-COPY 3dmv/util.py 3dmv/data_util.py 3dmv/model.py 3dmv/enet.py 3dmv/projection.py 3dmv/train.py 3dmv/test.py ./files/
+COPY docker/get-pip.py docker/lint/lint.sh ./
 
 RUN apt-get update -y && \
 	apt-get install -y python2 && \
 	python2 get-pip.py && \
 	apt-get install -y vim && \
 
-	pip install pylint==1.9.3
+	chmod +x lint.sh && \
+	pip install pylint==1.9.3 yapf
 
-ENTRYPOINT mv files/* lint; pylint lint/*.py | tee lint/summary.txt
+ENTRYPOINT ./lint.sh
