@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-COPY docker/get-pip.py prepare_data/prepare_2d_data.py docker/prepare/setup.py ScanNet ./
+COPY docker/get-pip.py prepare_data/prepare_2d_data.py docker/prepare/setup.py ScanNet docker/prepare/untest.py docker/prepare/prepare.sh ./
 
 RUN apt-get update -y && \
 	apt-get install -y python2 && \
@@ -13,7 +13,7 @@ RUN apt-get update -y && \
 	apt-get install -y libxrender-dev && \
 
 	python2 setup.py install && \
-	python2 -m unittest test
+	chmod +x prepare.sh	
+        #python2 untest.py
 
-ENTRYPOINT python2 prepare_2d_data.py --scannet_path data/scannetv2 --output_path data/scannetv2_images
-
+ENTRYPOINT ./prepare.sh

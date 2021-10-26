@@ -4,4 +4,4 @@ REQ = ['future', 'certifi', 'numpy','torch==0.4', 'torchvision==0.2.2', 'torchne
 
 setup(
         setup_requires = REQ,
-        install_requires = REQ)
+        install_requires = REQ,)
