@@ -1,0 +1,17 @@
+on:
+  push
+jobs:
+  idle:
+    name: Eval
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Pull the repo
+        uses: actions/checkout@v2
+      -
+        run: ls
+      -
+        name: Build docker image for eval step
+        run: docker build . --file=docker/eval/Dockerfile -t eval
+      -
+        run: docker images
