@@ -20,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
+        run: pwd
+      -
+        name: Run docker container for download step
         run: docker run -it -v $(pwd)/data:/data download
       -
         run: ls
