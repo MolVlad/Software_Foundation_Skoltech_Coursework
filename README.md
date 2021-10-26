@@ -1,17 +1,17 @@
 # Disclaimer
 This repository is not an original official implementation of the work, but a refactored codebase. Performed within the FSE course at Skoltech.
 # Quick start  
-Follow this quick step instruction in order to download, build and run docker images. These commands will download docker images from docker hub and then will build docker containers and will run them:  
+Follow this quick start instructions step by step in order to download, build and run code inside docker containers:
 
-* ```make hub_download``` - download docker image for data downloading
-* ```make hub_prepare``` - download docker image for data perparation
-* ```make hub_train``` - download docker image for model trainig
-* ```make hub_eval``` - download doker images for model testing 
-* ```make hub_lint``` - download docker image for ```.py``` files linting  
+* ```make hub_download``` - download data
+* ```make hub_prepare``` - prepare data
+* ```make hub_train``` - train net
+* ```make hub_eval``` - evaluate net 
+* ```make hub_lint``` - lint all ```.py``` files in repo  
 
-# Development 
-* ```TRAIN_FLAGS```and```TEST_FLAGS``` are the flags for proper running ```train.py``` and ```test.py``` respectively. You need to change these variables according to your needs and flag description.
-* ```DATA_DIR``` variable defines the directory that is used for storing the data.
-* If you want to add another modules to ```prepare.py / train.py / test.py```you need to change the variable ```REQ``` by appending your module in this manner: ```'module_name'``` in ```setup.py``` which corresponds to ```.py``` file that you want to change.
+# Development instructions
+* In order to change run configuration of train and test, you should change the following flags inside Makefile: ```TRAIN_FLAGS``` and ```TEST_FLAGS```.
+* ```DATA_DIR``` variable in Makefile defines the directory that is used for storing the data.
+* In order to use additional libraries during train, test and steps, you should add them to the variable ```REQ``` in ```setup.py``` files in the repositories ```docker/train```, ```docker/eval``` and ```docker/prepare```.
 * If you want to add tests of the particular functionality of ```prepare.py / train.py / test.py``` you need to add your test cases in ```unit_test.py``` file that correspons to the ```.py``` file whom functionality you would like to check.
 * Note that in current solution tests run simultaneously with the docker container running.  
