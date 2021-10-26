@@ -15,10 +15,6 @@ jobs:
         run: docker build . --file=docker/download/Dockerfile -t download
       -
         run: docker images
-  running:
-    needs: building
-    runs-on: ubuntu-latest
-    steps:
       -
         run: ls $(pwd)
       -
