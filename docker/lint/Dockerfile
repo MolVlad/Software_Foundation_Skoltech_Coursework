@@ -6,6 +6,7 @@ COPY 3dmv/util.py 3dmv/data_util.py 3dmv/model.py 3dmv/enet.py 3dmv/projection.p
 RUN apt-get update -y && \
 	apt-get install -y python2 && \
 	python2 get-pip.py && \
+	apt-get install -y vim && \
 
 	pip install pylint==1.9.3
 
