@@ -1,6 +1,25 @@
-# change to just "data"
-DATA_DIR = ../data
+DATA_DIR = data
 LINTED_DIR = lint
+PREPARE_FLAGS="--scannet_path data/scannetv2 --output_path data/scannetv2_images --export_label_images"	
+TRAIN_FLAGS="--help"
+EVAL_FLAGS="--help"
+
+hub_download:
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data dmasny/fse_project:download
+
+hub_prepare:
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data dmasny/fse_project:prepare
+
+hub_train:
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --gpus all dmasny/fse_project:train
+
+hub_eval:
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --gpus all dmasny/fse_project:eval
+
+hub_lint:
+	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint dmasny/fse_project:lint
+
+
 
 build_download:
 	docker build . --file=docker/download/Dockerfile -t download
@@ -23,22 +42,17 @@ run_download:
 	docker run -it -v $(shell pwd)/$(DATA_DIR):/data download
 
 run_prepare:
-	docker run -it -v $(shell pwd)/$(DATA_DIR):/data prepare
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --env PREPARE_FLAGS=$(PREPARE_FLAGS) prepare
 
 run_train:
-	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --gpus all train
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --gpus all --env TRAIN_FLAGS=$(TRAIN_FLAGS) train
 
 run_eval:
-	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --gpus all eval
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --gpus all --env EVAL_FLAGS=$(EVAL_FLAGS) eval
 
 run_lint:
 	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint lint
 	
-
-
-run_fix:
-	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint --entrypoint=bash lint
-
 
 
 run_download_debug:
