@@ -2,7 +2,7 @@ on:
   push
 jobs:
   idle:
-    name: Download
+    name: Prepare
     runs-on: ubuntu-latest
     steps:
       -
