@@ -19,6 +19,6 @@ jobs:
         run: ls $(pwd)
       -
         name: Run docker container for prepare step
-        run: docker run -t -v $(pwd)/data:/data prepare
+        run: docker run -t -v $(pwd)/data:/data --env PREPARE_FLAGS="--scannet_path data/scannetv2 --output_path data/scannetv2_images" prepare
       -
         run: ls
