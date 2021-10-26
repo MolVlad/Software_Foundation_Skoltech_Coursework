@@ -23,7 +23,7 @@ jobs:
         run: ls $(pwd)
       -
         name: Run docker container for download step
-        run: docker run -it -v $(pwd)/data:/data download
+        run: docker run -it download
       -
         run: ls
       
