@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-COPY docker/get-pip.py prepare_data/prepare_2d_data.py docker/prepare/setup.py ScanNet docker/prepare/untest.py docker/prepare/prepare.sh ./
+COPY docker/get-pip.py prepare_data/prepare_2d_data.py docker/prepare/setup.py ScanNet docker/prepare/unit_test.py docker/prepare/prepare.sh ./
 
 RUN apt-get update -y && \
 	apt-get install -y python2 && \
@@ -14,6 +14,5 @@ RUN apt-get update -y && \
 
 	python2 setup.py install && \
 	chmod +x prepare.sh	
-        #python2 untest.py
 
 ENTRYPOINT ./prepare.sh
