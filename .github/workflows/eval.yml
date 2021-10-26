@@ -19,6 +19,6 @@ jobs:
         run: ls $(pwd)
       -
         name: Run docker container for eval step
-        run: docker run -t -v $(pwd)/data:/data eval
+        run: docker run -t -v $(pwd)/data:/data --env TRAIN_FLAGS="--help" eval
       -
         run: ls
