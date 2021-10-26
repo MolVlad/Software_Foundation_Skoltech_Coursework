@@ -1,5 +1,5 @@
 # change to just "data"
-DATA_DIR = data
+DATA_DIR = ../data
 LINTED_DIR = lint
 
 build_download:
@@ -38,8 +38,32 @@ run_eval:
 run_lint:
 	mkdir -p $(LINTED_DIR)
 	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint lint
+	
+
 
 run_fix:
+	mkdir -p $(LINTED_DIR)
+	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint --entrypoint=bash lint
+
+
+
+run_download_debug:
+	mkdir -p $(DATA_DIR)
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --entrypoint=bash download
+
+run_prepare_debug:
+	mkdir -p $(DATA_DIR)
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --entrypoint=bash prepare
+
+run_train_debug:
+	mkdir -p $(DATA_DIR)
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data --entrypoint=bash train
+
+run_eval_debug:
+	mkdir -p $(DATA_DIR)
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data --entrypoint=bash eval
+
+run_lint_debug:
 	mkdir -p $(LINTED_DIR)
 	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint --entrypoint=bash lint
 
