@@ -26,10 +26,10 @@ run_prepare:
 	docker run -it -v $(shell pwd)/$(DATA_DIR):/data prepare
 
 run_train:
-	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data train
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data --gpus all train
 
 run_eval:
-	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data eval
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data --gpus all eval
 
 run_lint:
 	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint lint
@@ -51,7 +51,7 @@ run_train_debug:
 	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data --gpus all --entrypoint=bash train
 
 run_eval_debug:
-	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data --entrypoint=bash eval
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data --gpus all --entrypoint=bash eval
 
 run_lint_debug:
 	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint --entrypoint=bash lint
