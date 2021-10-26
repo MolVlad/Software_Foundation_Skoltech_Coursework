@@ -10,8 +10,8 @@ Follow this quick step instruction in order to download, build and run docker im
 * ```make hub_lint``` - download docker image for ```.py``` files linting  
 
 # Development 
-* ```TRAIN_FLAGS```and```TEST_FLAGS``` are the flags for proper running train.py and test.py respectively. You
-* If you want to add another modules to ```prepare.py / train.py / test.py```you need to change the variable REQ by appending your module in this manner: 'module_name' in setup.py which corresponds to ```.py``` file that you want to change.
+* ```TRAIN_FLAGS```and```TEST_FLAGS``` are the flags for proper running ```train.py``` and ```test.py``` respectively. You need to change these variables according to your needs and flag description.
+* If you want to add another modules to ```prepare.py / train.py / test.py```you need to change the variable ```REQ``` by appending your module in this manner: ```'module_name'``` in ```setup.py``` which corresponds to ```.py``` file that you want to change.
 * If you want to add tests of the particular functionality of ```prepare.py / train.py / test.py``` you need to add your test cases in ```unit_test.py``` file that correspons to the ```.py``` file whom functionality you would like to check.
 * Note that in current solution tests run simultaneously with the docker container running.  
 # Credits
