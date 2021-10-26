@@ -1,0 +1,13 @@
+on:
+  push
+jobs:
+  idle:
+    name: Checkouts
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Pull the repo
+        uses: actions/checkout@v2
+      -
+        run: ls
+        

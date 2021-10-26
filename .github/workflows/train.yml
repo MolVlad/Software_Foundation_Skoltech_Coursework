@@ -1,0 +1,24 @@
+on:
+  push
+jobs:
+  building:
+    name: Train
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Pull the repo
+        uses: actions/checkout@v2
+      -
+        run: ls
+      -
+        name: Build docker image for train step
+        run: docker build . --file=docker/train/Dockerfile -t train
+      -
+        run: docker images
+      -
+        run: ls $(pwd)
+      -
+        name: Run docker container for train step
+        run: docker run -t -v $(pwd)/data:/data train
+      -
+        run: ls

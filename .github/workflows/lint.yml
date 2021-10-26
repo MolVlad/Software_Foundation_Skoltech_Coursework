@@ -1,0 +1,17 @@
+on:
+  push
+jobs:
+  idle:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Pull the repo
+        uses: actions/checkout@v2
+      -
+        run: ls
+      -
+        name: Build docker image for linting
+        run: docker build . --file=docker/lint/Dockerfile -t lint
+      -
+        run: docker images
