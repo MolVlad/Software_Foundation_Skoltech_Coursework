@@ -1,7 +1,7 @@
 on:
   push
 jobs:
-  idle:
+  building:
     name: Download
     runs-on: ubuntu-latest
     steps:
@@ -15,4 +15,12 @@ jobs:
         run: docker build . --file=docker/download/Dockerfile -t download
       -
         run: docker images
+  running:
+    needs: building
+    runs-on: ubuntu-latest
+    steps:
+      -
+        run: docker run -it -v $(pwd)/data:/data download
+      -
+        run: ls
       
