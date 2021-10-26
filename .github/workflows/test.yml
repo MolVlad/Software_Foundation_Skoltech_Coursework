@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        run: Pull the repo
+        name: Pull the repo
         uses: actions/checkout@v2
       -
         run: ls
