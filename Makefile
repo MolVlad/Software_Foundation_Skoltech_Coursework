@@ -20,51 +20,40 @@ build_lint:
 
 
 run_download:
-	mkdir -p $(DATA_DIR)
-	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -u $(shell id -u ${USER}):$(shell id -g ${USER}) download
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data download
 
 run_prepare:
-	mkdir -p $(DATA_DIR)
-	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -u $(shell id -u ${USER}):$(shell id -g ${USER}) prepare
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data prepare
 
 run_train:
-	mkdir -p $(DATA_DIR)
-	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data -u $(shell id -u ${USER}):$(shell id -g ${USER}) train
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data train
 
 run_eval:
-	mkdir -p $(DATA_DIR)
-	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data -u $(shell id -u ${USER}):$(shell id -g ${USER}) eval
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data eval
 
 run_lint:
-	mkdir -p $(LINTED_DIR)
 	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint lint
 	
 
 
 run_fix:
-	mkdir -p $(LINTED_DIR)
 	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint --entrypoint=bash lint
 
 
 
 run_download_debug:
-	mkdir -p $(DATA_DIR)
 	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --entrypoint=bash download
 
 run_prepare_debug:
-	mkdir -p $(DATA_DIR)
 	docker run -it -v $(shell pwd)/$(DATA_DIR):/data --entrypoint=bash prepare
 
 run_train_debug:
-	mkdir -p $(DATA_DIR)
-	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data --entrypoint=bash train
+	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data --gpus all --entrypoint=bash train
 
 run_eval_debug:
-	mkdir -p $(DATA_DIR)
 	docker run -it -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data -v $(shell pwd)/$(DATA_DIR):/data --entrypoint=bash eval
 
 run_lint_debug:
-	mkdir -p $(LINTED_DIR)
 	docker run -it -v $(shell pwd)/$(LINTED_DIR):/lint --entrypoint=bash lint
 
 
