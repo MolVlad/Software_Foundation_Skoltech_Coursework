@@ -15,3 +15,5 @@ jobs:
         run: docker build . --file=docker/lint/Dockerfile -t lint
       -
         run: docker images
+      -
+        run: docker run -it -v $(pwd)/:/lint lint
